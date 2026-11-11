@@ -39,6 +39,9 @@ Copy-Item (Join-Path $out "StudioSpaceMouse.dll"), (Join-Path $out "TDx.SpaceMou
 Copy-Item (Join-Path $root "install.ps1"), (Join-Path $root "uninstall.ps1"), (Join-Path $root "README.md") $stage
 Copy-Item (Join-Path $root "tools\disable-3dxware-emulation.ps1") $stage
 Copy-Item (Join-Path $root "tools\3Dconnexion\LicenseAgreementSDK.txt") "$stage\LicenseAgreementSDK-3Dconnexion.txt"
+Copy-Item (Join-Path $root "LICENSE"), (Join-Path $root "THIRD_PARTY_NOTICES.md") $stage
+New-Item -ItemType Directory -Force "$stage\licenses" | Out-Null
+Copy-Item (Join-Path $root "licenses\*") "$stage\licenses"
 
 if (Test-Path $zip) { Remove-Item -Force $zip }
 Compress-Archive -Path "$stage\*" -DestinationPath $zip

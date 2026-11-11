@@ -20,6 +20,10 @@ input backends:
   The plugin reads the device through the Windows Raw Input API and the `[Sensitivity]`,
   `[Axes]` and `[Buttons]` config sections apply.
 
+This is an unofficial, hobby project. It is not affiliated with or endorsed by BrickLink, the
+LEGO Group or 3Dconnexion. It patches Studio at runtime and compiles against Studio's own
+assemblies, which are never redistributed; you need your own Studio install to build it.
+
 3D input device development tools and related technology are provided under license from
 3Dconnexion. (c) 3Dconnexion 1992 - 2021. All rights reserved. The managed wrapper
 `TDx.SpaceMouse.Navigation3D.dll` is redistributed under the SDK licence in `tools/3Dconnexion/`.
@@ -126,6 +130,12 @@ Studio destroys BepInEx's plugin object shortly after startup, so the plugin's o
 `OrbitControl.LateUpdate`, which Studio calls for every live viewport camera. The raw-input
 reader is static and stops on application quit, not on component destroy. The destroyed
 component still serves as the config and log holder; nothing on it touches Unity after startup.
+
+## Licence
+
+The plugin's own code is MIT licensed (`LICENSE`). The repository and the release zip also
+redistribute BepInEx (LGPL 2.1, text in `licenses/`), HarmonyX, MonoMod and Mono.Cecil (MIT) and
+3Dconnexion's managed SDK wrapper (3Dconnexion SDK licence); see `THIRD_PARTY_NOTICES.md`.
 
 ## Scope and known limits
 
