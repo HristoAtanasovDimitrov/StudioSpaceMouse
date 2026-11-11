@@ -1,0 +1,20 @@
+name: tests
+
+# The plugin itself compiles against Studio's own assemblies, which are not redistributable,
+# so CI only runs the unit tests for the pure parts (HID parsing, axis shaping, bindings).
+# Release zips are built locally with tools\make-release.ps1.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  unit-tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - run: dotnet test tests/StudioSpaceMouse.Tests --nologo

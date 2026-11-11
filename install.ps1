@@ -25,8 +25,15 @@ $ErrorActionPreference = "Stop"
 
 # $PSScriptRoot is not available inside parameter defaults on Windows PowerShell 5.1.
 $scriptRoot = if ($PSScriptRoot) { $PSScriptRoot } else { Split-Path -Parent $MyInvocation.MyCommand.Path }
-if (-not $PluginDll) { $PluginDll = Join-Path $scriptRoot "src\StudioSpaceMouse\bin\Release\net472\StudioSpaceMouse.dll" }
-if (-not $BepInExZipDir) { $BepInExZipDir = Join-Path $scriptRoot "tools\BepInEx_win_x64_5.4.23.6" }
+# Two layouts: an extracted release zip (loader files and plugin next to this script), or the
+# source tree (build output under src\, loader files under tools\).
+if (-not $PluginDll) {
+    $fromZip = Join-Path $scriptRoot "BepInEx\plugins\StudioSpaceMouse\StudioSpaceMouse.dll"
+    $PluginDll = if (Test-Path $fromZip) { $fromZip } else { Join-Path $scriptRoot "src\StudioSpaceMouse\bin\Release\net472\StudioSpaceMouse.dll" }
+}
+if (-not $BepInExZipDir) {
+    $BepInExZipDir = if (Test-Path (Join-Path $scriptRoot "winhttp.dll")) { $scriptRoot } else { Join-Path $scriptRoot "tools\BepInEx_win_x64_5.4.23.6" }
+}
 
 function Test-Admin {
     $id = [Security.Principal.WindowsIdentity]::GetCurrent()

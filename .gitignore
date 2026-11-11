@@ -5,3 +5,5 @@ obj/
 TestResults/
 # machine-specific backup of the user's 3DxWare profile
 tools/*.bak
+# release zips are published on GitHub, not committed
+dist/

@@ -1,5 +1,9 @@
 # StudioSpaceMouse
 
+[![tests](https://github.com/HristoAtanasovDimitrov/StudioSpaceMouse/actions/workflows/tests.yml/badge.svg)](https://github.com/HristoAtanasovDimitrov/StudioSpaceMouse/actions/workflows/tests.yml)
+[![release](https://img.shields.io/badge/release-v0.1.0-blue)](https://github.com/HristoAtanasovDimitrov/StudioSpaceMouse/releases/latest)
+[![platform](https://img.shields.io/badge/platform-Windows%20x64%20%7C%20Studio%202.0-lightgrey)](#install)
+
 3Dconnexion SpaceMouse support for BrickLink Studio 2.0, injected as a BepInEx plugin.
 
 Studio is a Unity Mono build with no SpaceMouse code of its own. This plugin drives Studio's
@@ -37,7 +41,9 @@ reads the HID device directly.
 | `src/StudioSpaceMouse/Plugin.cs` | BepInEx entry point, config, per-frame update. |
 | `tests/` | xunit tests for the pure parts (parser, axis shaping, bindings). |
 | `tools/` | BepInEx 5.4.23.6 x64 release files used by the installer and as build references. |
-| `install.ps1` / `uninstall.ps1` | Copy BepInEx and the plugin into the Studio folder (self-elevating). |
+| `install.ps1` / `uninstall.ps1` | Copy BepInEx and the plugin into the Studio folder (self-elevating); work from a release zip or the source tree. |
+| `tools/make-release.ps1` | Builds and packs the release zip. |
+| `.github/workflows/tests.yml` | Runs the unit tests on every push. |
 
 ## Build
 
@@ -49,7 +55,15 @@ dotnet build src\StudioSpaceMouse -c Release
 dotnet test tests\StudioSpaceMouse.Tests
 ```
 
+`tools\make-release.ps1` builds and packs an installable zip into `dist\`. CI only runs the
+unit tests, since Studio's assemblies are not redistributable.
+
 ## Install
+
+From a release: download `StudioSpaceMouse-v<version>.zip` from the
+[releases page](https://github.com/HristoAtanasovDimitrov/StudioSpaceMouse/releases), extract it
+anywhere, and run the installer from the extracted folder. From a source checkout, build first and
+run the same script from the repository root.
 
 ```powershell
 .\install.ps1
