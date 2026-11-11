@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+    <AssemblyName>StudioSpaceMouse</AssemblyName>
+    <RootNamespace>StudioSpaceMouse</RootNamespace>
+    <LangVersion>9</LangVersion>
+    <Nullable>disable</Nullable>
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <Version>0.1.0</Version>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <!-- Where Studio is installed; override with -p:StudioDir="..." -->
+    <StudioDir Condition="'$(StudioDir)' == ''">C:\Program Files\Studio 2.0 EarlyAccess</StudioDir>
+    <StudioManaged>$(StudioDir)\Studio_Data\Managed</StudioManaged>
+    <!-- BepInEx core assemblies (from the extracted BepInEx 5 zip); override with -p:BepInExCore="..." -->
+    <BepInExCore Condition="'$(BepInExCore)' == ''">$(MSBuildThisFileDirectory)..\..\tools\BepInEx\core</BepInExCore>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- 3Dconnexion's managed navlib wrapper (SDK licence, object-code redistribution allowed). Copied next to the plugin. -->
+    <Reference Include="TDx.SpaceMouse.Navigation3D">
+      <HintPath>$(MSBuildThisFileDirectory)..\..\tools\3Dconnexion\TDx.SpaceMouse.Navigation3D.dll</HintPath>
+      <Private>true</Private>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>$(BepInExCore)\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCore)\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(StudioManaged)\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(StudioManaged)\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(StudioManaged)\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>$(StudioManaged)\UnityEngine.PhysicsModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Studio">
+      <HintPath>$(StudioManaged)\Studio.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Studio.DataModel">
+      <HintPath>$(StudioManaged)\Studio.DataModel.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="Studio.Presentation">
+      <HintPath>$(StudioManaged)\Studio.Presentation.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

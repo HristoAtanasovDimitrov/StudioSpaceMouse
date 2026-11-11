@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>9</LangVersion>
+    <Nullable>disable</Nullable>
+    <IsPackable>false</IsPackable>
+    <RootNamespace>StudioSpaceMouse.Tests</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Pure parsing code shared with the plugin; it has no Unity or BepInEx dependency. -->
+    <Compile Include="..\..\src\StudioSpaceMouse\HidReportParser.cs" Link="HidReportParser.cs" />
+    <Compile Include="..\..\src\StudioSpaceMouse\SpaceMouseState.cs" Link="SpaceMouseState.cs" />
+    <Compile Include="..\..\src\StudioSpaceMouse\AxisShaper.cs" Link="AxisShaper.cs" />
+    <Compile Include="..\..\src\StudioSpaceMouse\AxisBinding.cs" Link="AxisBinding.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.11.1" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2" />
+  </ItemGroup>
+
+</Project>
