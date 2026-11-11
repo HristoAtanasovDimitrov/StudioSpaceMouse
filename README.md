@@ -1,7 +1,7 @@
 # StudioSpaceMouse
 
 [![tests](https://github.com/HristoAtanasovDimitrov/StudioSpaceMouse/actions/workflows/tests.yml/badge.svg)](https://github.com/HristoAtanasovDimitrov/StudioSpaceMouse/actions/workflows/tests.yml)
-[![release](https://img.shields.io/badge/release-v0.1.0-blue)](https://github.com/HristoAtanasovDimitrov/StudioSpaceMouse/releases/latest)
+[![release](https://img.shields.io/github/v/release/HristoAtanasovDimitrov/StudioSpaceMouse)](https://github.com/HristoAtanasovDimitrov/StudioSpaceMouse/releases/latest)
 [![platform](https://img.shields.io/badge/platform-Windows%20x64%20%7C%20Studio%202.0-lightgrey)](#install)
 
 3Dconnexion SpaceMouse support for BrickLink Studio 2.0, injected as a BepInEx plugin.
